@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light p-2">
+    <div>
+        <a class="navbar-brand" routerLink="/admin">Адмін Панель</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="car-list" [routerLinkActive]="'active'">Машини</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="customer-list" [routerLinkActive]="'active'">Кліент</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="rental-list" [routerLinkActive]="'active'">Оренда</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="return-list" [routerLinkActive]="'active'">Поверненя</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="mt-4 mb-4">
+    <router-outlet></router-outlet>
+</div>

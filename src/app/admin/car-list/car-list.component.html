@@ -1,0 +1,136 @@
+<div class="">
+    <button class="btn btn-primary" (click)="openCreate(contentCreate)">Добавити Машину</button>
+</div>
+<div class="mt-4" *ngIf="dtOptions">
+    <table  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Бренд</th>
+                <th>Модель</th>
+                <th>Рік</th>
+                <th>Топливо</th>
+                <th>Ціна за годину</th>
+                <th>Доступна</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let car of cars">
+                <td>{{ car.brand }}</td>
+                <td>{{ car.model }}</td>
+                <td>{{ car.year | date:'shortDate' }}</td>
+                <td>{{ car.fuel }}</td>
+                <td>{{ car.pricePerHour | number:'1.2-2' }}</td>
+                <td>{{ car.available ? 'так' : 'ні' }}</td>
+                <td>
+                    <button class="btn btn-warning" (click)="openUpdate(car, contentUpdate)">Редагувати</button>
+                    <button class="btn btn-danger ml-2" (click)="openDelete(car, contentDelete)">Видалити</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #contentCreate let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Створення</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="brand">Бренд</label>
+                <div class="input-group">
+                    <input type="text" id="brand" class="form-control" name="brand" [(ngModel)]="newCar.brand">
+                </div>
+
+                <label for="model">Модель</label>
+                <div class="input-group">
+                    <input type="text" id="model" class="form-control" name="model" [(ngModel)]="newCar.model">
+                </div>
+
+                <label for="year">Рік</label>
+                <div class="input-group">
+                    <input type="datetime-local" id="year" class="form-control" name="year" [(ngModel)]="newCar.year">
+                </div>
+
+                <label for="fuel">Топливо</label>
+                <div class="input-group">
+                    <input type="number" id="fuel" class="form-control" name="fuel" [(ngModel)]="newCar.fuel">
+                </div>
+
+                <label for="price">Ціна за годину</label>
+                <div class="input-group">
+                    <input type="number" id="price" class="form-control" name="price" [(ngModel)]="newCar.pricePerHour">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="create(modal)">Створити</button>
+    </div>
+</ng-template>
+
+<ng-template #contentUpdate let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Редагування</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="brand">Бренд</label>
+                <div class="input-group">
+                    <input type="text" id="brand" class="form-control" name="brand" [(ngModel)]="car.brand">
+                </div>
+
+                <label for="model">Модель</label>
+                <div class="input-group">
+                    <input type="text" id="model" class="form-control" name="model" [(ngModel)]="car.model">
+                </div>
+
+                <label for="year">Рік</label>
+                <div class="input-group">
+                    <input type="datetime-local" id="year" class="form-control" name="year" [(ngModel)]="car.year">
+                </div>
+
+                <label for="fuel">Топливо</label>
+                <div class="input-group">
+                    <input type="text" id="fuel" class="form-control" name="fuel" [(ngModel)]="car.fuel">
+                </div>
+
+                <label for="price">Ціна за годину</label>
+                <div class="input-group">
+                    <input type="number" id="price" class="form-control" name="price" [(ngModel)]="car.pricePerHour">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="save(modal)">Зберегти</button>
+    </div>
+</ng-template>
+
+<ng-template #contentDelete let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Видалення</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                Ви точно хочете видалити цей запис ?
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="answear(modal, true)">Так</button>
+        <button type="button" class="btn btn-outline-dark" (click)="answear(modal, false)">Ні</button>
+    </div>
+</ng-template>

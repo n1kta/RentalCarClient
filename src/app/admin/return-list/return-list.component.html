@@ -1,0 +1,19 @@
+<div class="mt-4">
+    <table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger">
+        <thead>
+            <tr>
+                <th>Оренда</th>
+                <th>Дата Повернення</th>
+                <th>Вчасно</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ret of returns">
+                <td>{{ ret.rentalId }}</td>
+                <td>{{ ret.returnDate | date:'shortDate' }}</td>
+                <td>{{ ret.inTime ? 'так' : 'ні' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

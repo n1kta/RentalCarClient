@@ -1,0 +1,23 @@
+<div class="mt-4">
+    <table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger">
+        <thead>
+            <tr>
+                <th>Машина</th>
+                <th>Покупець</th>
+                <th>Дата Отримання</th>
+                <th>Дата Висадки</th>
+                <th>Плата</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let rental of rentals">
+                <td>{{ rental.car }}</td>
+                <td>{{ rental.customer }}</td>
+                <td>{{ rental.pickUpDate | date:'shortDate' }}</td>
+                <td>{{ rental.dropOffDate | date:'shortDate' }}</td>
+                <td>{{ rental.fee }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

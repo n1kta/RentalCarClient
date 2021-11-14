@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-4 mt-4" *ngFor="let rental of rentals">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="../../assets/image/not.png" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ rental.car }}</h5>
+                <p class="card-text p-0 m-0">Дата Отримання: {{ rental.pickUpDate | date:'shortDate' }}</p>
+                <p class="card-text p-0 m-0">Дата Висадки: {{ rental.dropOffDate | date:'shortDate' }}</p>
+                <p class="card-text p-0 m-0">Місце Отримання: {{ rental.pickUpLoc }}</p>
+                <p class="card-text p-0 m-0">Місце Висадки: {{ rental.dropOffLoc }}</p>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <button class="btn btn-success" [disabled]="rental.isReturned" (click)="returnRental(rental.rentalId)">Повернути</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

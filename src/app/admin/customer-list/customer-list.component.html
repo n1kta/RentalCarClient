@@ -1,0 +1,21 @@
+<div class="mt-4">
+    <table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger">
+        <thead>
+            <tr>
+                <th>Ім'я</th>
+                <th>Фамілія</th>
+                <th>Адреса</th>
+                <th>Моб. Телефон</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customers">
+                <td>{{ customer.firstName }}</td>
+                <td>{{ customer.lastName }}</td>
+                <td>{{ customer.address }}</td>
+                <td>{{ customer.phone }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
